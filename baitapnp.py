@@ -18,6 +18,7 @@ for column in range(arr.shape[1]):
 print(arr)
 n=[[10,2,3],[4,5,6],[8,9,10]]
 m=np.array(n)
+#tìm max và in ra chỉ số max
 print(np.max(m))
 for i in range(m.shape[0]):
     for j in range(m.shape[1]):
