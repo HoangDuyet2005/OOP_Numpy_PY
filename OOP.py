@@ -51,3 +51,95 @@ if __name__=='__main__':
     s2=SoPhuc(2,2)
     s3=s1+s2
     print(s3)
+#Kế thừa
+class Person:
+    def __init__(self):
+        print('constructor')
+    def gioithieu(self):
+        print('đây là lớp cha')
+class Student(Person):
+    def __init__(self):
+        super().__init__() 
+        #Hoặc có 1 cách khác là Person.__init__(thuộc tính của lớp cha)
+        #Gọi lại tên lớp cha. hoặc từ khóa super().
+        print('Hàm khởi tạo của lớp con')
+if __name__=='__main__':
+    sv=Student()
+    sv.gioithieu()
+#kế, đa
+#Cha
+class Nguoi:
+    def __init__(self, ten, tuoi):
+        self.ten = ten
+        self.tuoi = tuoi
+    def gioi_thieu(self):
+        print("HÊ NÔ, tao là", self.ten, "tao", self.tuoi, "tuổi.")
+#con1
+class GiaoVien(Nguoi):
+    def __init__(self, ten, tuoi, mon_day):
+        super().__init__(ten, tuoi)
+        self.mon_day = mon_day
+    def gioi_thieu(self):
+        print("Tao là GV", self.ten, ", tao dạy ", self.mon_day, "tao", self.tuoi, "tuổi.")
+#con2
+class SinhVien(Nguoi):
+    def __init__(self, ten, tuoi, nganh_hoc):
+        super().__init__(ten, tuoi)
+        self.nganh_hoc = nganh_hoc
+    def gioi_thieu(self):
+        print("Tao là SV ", self.ten, ", tôi học ", self.nganh_hoc, "tao", self.tuoi, "tuổi.")
+#đa hình
+def gioi_thieu_chung(doi_tuong):
+    doi_tuong.gioi_thieu()
+#tao doi tuong tu cac lop khac nhau
+gv = GiaoVien("Thầy Tỉnh", 50, "OOP Java")
+sv = SinhVien("Duyệt", 19, "Kĩ thuật phẩn mềm")
+nguoi = Nguoi("Hoàng Thế Duyệt", 19)
+# Gọi phương thức gioi_thieu qua hàm chung
+gioi_thieu_chung(gv)
+gioi_thieu_chung(sv)
+gioi_thieu_chung(nguoi)
+#Ghi đè
+class Person:
+    def __init__(self,name,job):
+        self.name=name
+        self.job=job
+    def show(self):
+        return f'{self.name} {self.job}'
+class Studen(Person):
+    def __init__(self, name, job, salary):
+        super().__init__(name, job)
+        self.salary=salary
+    def show(self):
+        #return super().show()+ ' '+f'{self.salary}' #Cách 1
+        return Person.show(self)+f' {self.salary}' #Cách 2
+if __name__=='__main__':
+    sv=Studen('Duyet','dev',1000)
+    print(sv.show())
+#Trừu tượng
+from abc import ABC, abstractmethod
+# Tạo một lớp trừu tượng
+class Animal(ABC):
+    # Phương thức trừu tượng
+    @abstractmethod
+    def speak(self):
+        pass 
+    # Phương thức thông thường
+    def move(self):
+        print("This animal moves!")
+# Lớp cụ thể kế thừa lớp trừu tượng
+class Dog(Animal):
+    def speak(self):
+        print("Woof! Woof!")
+class Cat(Animal):
+    def speak(self):
+        print("Meow! Meow!")
+# Tạo đối tượng từ lớp cụ thể
+dog = Dog()
+dog.speak()  # Output: Woof! Woof!
+dog.move()   # Output: This animal moves!
+cat = Cat()
+cat.speak()  # Output: Meow! Meow!
+# Không thể khởi tạo trực tiếp lớp trừu tượng
+# animal = Animal()  # Sẽ gây lỗi TypeError
+
