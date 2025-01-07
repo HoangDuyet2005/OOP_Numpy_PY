@@ -124,22 +124,21 @@ class Animal(ABC):
     @abstractmethod
     def speak(self):
         pass 
-    # Phương thức thông thường
+    #Phương thức thông thường
     def move(self):
         print("This animal moves!")
-# Lớp cụ thể kế thừa lớp trừu tượng
+#Lớp cụ thể kế thừa lớp trừu tượng
 class Dog(Animal):
     def speak(self):
-        print("Woof! Woof!")
+        print("Gâu!")
 class Cat(Animal):
     def speak(self):
-        print("Meow! Meow!")
-# Tạo đối tượng từ lớp cụ thể
+        print("Mèo méo meo mèo meo")
+#Tạo đối tượng từ lớp cụ thể
 dog = Dog()
-dog.speak()  # Output: Woof! Woof!
-dog.move()   # Output: This animal moves!
+dog.speak()
+dog.move()
 cat = Cat()
-cat.speak()  # Output: Meow! Meow!
-# Không thể khởi tạo trực tiếp lớp trừu tượng
-# animal = Animal()  # Sẽ gây lỗi TypeError
+cat.speak()
+
 
